@@ -4,7 +4,7 @@
 
 2 将`python-3.10.11-embed-amd64\python310._pth`**删除**，以便python能够根据规自动添加搜索路径
 
-> 注意：根据[python导入module规则](https://docs.python.org/zh-cn/3/using/windows.html#finding-modules)，如果`pythonxxx._pth`（其中xxx是版本号，比如312）文件存在的情况下，Python并不会将工作目录或目标执行脚本添加到搜索路径中。
+> 注意：根据[python导入module规则](https://docs.python.org/zh-cn/3/using/windows.html#finding-modules)，如果`pythonxxx._pth`（其中xxx是版本号，比如312）文件存在的情况下，Python不会将工作目录或目标执行脚本添加到搜索路径中，因此我们这里需要将`python310._pth`删除了
 
 `python310._pth`文件中内容一般如下：
 
@@ -21,8 +21,13 @@ import site
 
 ```bat
 cd python-3.10.11-embed-amd64
+
 rem 安装pip
 python.exe ..\get-pip.py
+
+rem 切换国内源
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+
 rem 安装依赖项
 pip install -r ..\requirements.txt
 ```
