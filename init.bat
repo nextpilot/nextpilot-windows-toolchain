@@ -22,7 +22,7 @@ set PATH=%RTT_EXEC_PATH%;%PATH%
 set PATH=%ENV_ROOT%\toolchain\git\MinGit-2.42.0.2-64-bit\cmd;%PATH%
 
 @REM mconf
-set PATH=%ENV_ROOT%\toolchain\mconf\mconf-v4.6.0.0-idf-20190628-win32;%PATH%
+set PATH=%ENV_ROOT%\toolchain\mconf\kconfig-frontends-3.12.0-windows;%PATH%
 
 @REM env和pkgs
 set PKGS_ROOT=%ENV_ROOT%\rtthread\pkg

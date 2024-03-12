@@ -1,39 +1,55 @@
 # nextpilot-windows-toolchain
 
 #### 介绍
-{**以下是 Gitee 平台说明，您可以替换此简介**
-Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台
-无论是个人、团队、或是企业，都能够用 Gitee 实现代码托管、项目管理、协作开发。企业项目请看 [https://gitee.com/enterprises](https://gitee.com/enterprises)}
 
-#### 软件架构
-软件架构说明
+nextpilot-windows-toolchain是nextpilot-flight-control在windows平台下的开发工具链，由于nextpilot-flight-control采用了[RT-Thread](https://gitee.com/rtthread/rt-thread.git)国产操作系统，因此工具链中集成了[RT-Thread ENV]和[Packages]
 
+#### 目录结构
 
-#### 安装教程
+```
+├─document
+├─rtthread         # 保存rt-thread官方工具和代码
+│  ├─bin           # menuconfig/pkgs/env等可执行文件，本质是rtt-env的exe封装
+│  ├─env           # rtt-env的python代码
+│  └─pkg           # rtt-pkg的kconfig文件
+├─toolchain        # 第三方工具链，主要是python/arm-gcc等
+│  ├─gcc           # arm-gcc，用于编译固件
+│  ├─git           # git-for-windows，用于版本管理
+│  ├─mconf         # kconfig-frontends，在windows下使用kconfig
+│  ├─python        # python，已经添加了所需的模块
+│  ├─qemu          # qemu，硬件模拟器，用于运行飞行仿真
+│  └─vscode        # vscode，文本编辑器，已安装所需的插件
+└─workspace        # 工作目录
+```
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+#### 如何使用
 
-#### 使用说明
+下载工具链到任意**不包含中文**的路径，比如`c:\nextpilot-windows-toolchain`
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+然后双击运行根目录下的`start.bat`脚本（为了方便下次使用，建议将start.bat添加桌面快捷方式），启动cmd终端
 
-#### 参与贡献
+在cmd中切换到nextpilot-flight-control的target目录，然后执行配置、编译、仿真等
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+```bat
+rem 切换到sitl虚拟飞行仿真目录
+cd nextpilot-flight-control\target\sitl\qemu-vexpress-a9
 
+# 配置编译模块，非必须
+menuconfig
 
-#### 特技
+# 编译固件
+scons -j10
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+# 启动仿真
+qemu.bat
+```
+
+#### 常见问题
+
+1 如何将start.bat添加到Windows Terminal
+
+2 如何通过pip安装其它模块
+
+3 如何切换python版本
+
+4 如何切换arm-gcc版本
