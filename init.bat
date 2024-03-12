@@ -59,6 +59,12 @@ set PATH=%ENV_ROOT%\toolchain\git\MinGit-2.42.0.2-64-bit\cmd;%PATH%
 @REM mconf
 set PATH=%ENV_ROOT%\toolchain\mconf\kconfig-frontends-3.12.0-windows;%PATH%
 
+@REM fatdisk
+set PATH=%ENV_ROOT%\toolchain\fatdisk;%PATH%
+
+@REM qemu
+set PATH=%ENV_ROOT%\toolchain\qemu\qemu-w64-v8.2.0;%PATH%
+
 @REM env和pkgs
 set PKGS_ROOT=%ENV_ROOT%\rtthread\pkg
 set PKGS_DIR=%ENV_ROOT%\rtthread\pkg

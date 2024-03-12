@@ -2,7 +2,7 @@
 
 #### 介绍
 
-nextpilot-windows-toolchain是nextpilot-flight-control在windows平台下的开发工具链，由于nextpilot-flight-control采用了[RT-Thread](https://gitee.com/rtthread/rt-thread.git)国产操作系统，因此工具链中集成了[RT-Thread ENV]和[Packages]
+nextpilot-windows-toolchain是nextpilot-flight-control在windows平台下的开发工具链，由于nextpilot-flight-control采用了[RT-Thread](https://gitee.com/rtthread/rt-thread.git)国产操作系统，因此工具链中集成了[RT-Thread ENV](https://gitee.com/RT-Thread-Mirror/env.git)和[Packages](https://gitee.com/RT-Thread-Mirror/packages.git)
 
 #### 目录结构
 
@@ -24,11 +24,11 @@ nextpilot-windows-toolchain是nextpilot-flight-control在windows平台下的开�
 
 #### 如何使用
 
-下载工具链到任意**不包含中文**的路径，比如`c:\nextpilot-windows-toolchain`
+1 下载工具链到任意**不包含中文**的路径，比如`c:\nextpilot-windows-toolchain`
 
-然后双击运行根目录下的`start.bat`脚本（为了方便下次使用，建议将start.bat添加桌面快捷方式），启动cmd终端
+2 然后双击运行根目录下的`start.bat`脚本（为了方便下次使用，建议将start.bat添加桌面快捷方式），启动cmd终端
 
-在cmd中切换到nextpilot-flight-control的target目录，然后执行配置、编译、仿真等
+3 在cmd中切换到nextpilot-flight-control的target目录，然后执行配置、编译、仿真等
 
 ```bat
 rem 切换到sitl虚拟飞行仿真目录
