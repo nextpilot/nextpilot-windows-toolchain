@@ -9,10 +9,9 @@ set PATH=%SystemRoot%\system32;%PATH%
 set PATH=C:\WINDOWS\system32;%PATH%
 
 @REM python
-set PYTHONPATH=%ENV_ROOT%\toolchain\python\python-3.10.11-embed-amd64
 set PYTHONHOME=%ENV_ROOT%\toolchain\python\python-3.10.11-embed-amd64
-set SCONS=%PYTHONPATH%\Scripts
-set PATH=%PYTHONPATH%;%SCONS%;%PATH%
+set PYTHONPATH=%PYTHONHOME%
+set PATH=%PYTHONHOME%;%PYTHONHOME%\Scripts;%PATH%
 
 @REM arm-gcc
 set RTT_EXEC_PATH=%ENV_ROOT%\toolchain\gcc\gcc-arm-none-eabi-10.3-2021.10\bin
