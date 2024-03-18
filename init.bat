@@ -6,6 +6,17 @@ rem Simple "ver" prints empty line before Windows version
 rem Use this construction to print just a version info
 cmd /d /c ver | "%windir%\system32\find.exe" "Windows"
 
+
+echo ******************************************************************
+echo *      _   __             __   ____   _  __        __
+echo *     / ^| / /___   _  __ / /_ / __ \ (_)/ /____   / /_
+echo *    /  ^|/ // _ \ ^| ^|/_// __// /_/ // // // __ \ / __/
+echo *   / /^|  //  __/_^>  ^< / /_ / ____// // // /_/ // /_
+echo *  /_/ ^|_/ \___//_/^|_^| \__//_/    /_//_/ \____/ \__/
+echo *
+echo * Copyright All Reserved (C) 2015-2024 NextPilot Development Team
+echo ******************************************************************
+
 rem Now we form the command prompt
 rem This will start prompt with `User@PC `
 set PROMPT0=$E[m$E[32m$E]9;8;"USERNAME"$E\@$E]9;8;"COMPUTERNAME"$E\$S
