@@ -31,3 +31,7 @@ pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 rem 安装依赖项
 pip install -r ..\requirements.txt
 ```
+
+4 使用[UniExtract](https://github.com/Bioruebe/UniExtract2/releases)对下载`python-3.10.11-amd64.exe`解压，然后按照下面链接拷贝所需文件
+
+<https://blog.csdn.net/nostmabole/article/details/132354099>

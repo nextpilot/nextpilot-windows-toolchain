@@ -77,6 +77,6 @@ set PATH=%ENV_ROOT%\toolchain\fatdisk;%PATH%
 set PATH=%ENV_ROOT%\toolchain\qemu\qemu-w64-v8.2.0;%PATH%
 
 @REM env和pkgs
-set PKGS_ROOT=%ENV_ROOT%\packages\pkg
-set PKGS_DIR=%ENV_ROOT%\packages\pkg
+set PKGS_ROOT=%ENV_ROOT%\packages
+set PKGS_DIR=%ENV_ROOT%\packages
 set PATH=%ENV_ROOT%\packages\bin;%PATH%
