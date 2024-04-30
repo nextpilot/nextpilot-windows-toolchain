@@ -60,7 +60,9 @@ set PYTHONPATH=%PYTHONHOME%
 set PATH=%PYTHONHOME%;%PYTHONHOME%\Scripts;%PATH%
 
 @REM arm-gcc
-set RTT_EXEC_PATH=%NWT_ROOT%\toolchain\gcc\gcc-arm-none-eabi-10.3-2021.10\bin
+set GCC_ARM_HOME=%NWT_ROOT%\toolchain\gcc\gcc-arm-none-eabi-10.3-2021.10
+set GCC_EXEC_PATH=%NWT_ROOT%\toolchain\gcc\gcc-arm-none-eabi-10.3-2021.10\bin
+set RTT_EXEC_PATH=%GCC_EXEC_PATH%
 set RTT_CC=gcc
 set PATH=%RTT_EXEC_PATH%;%PATH%
 
@@ -74,6 +76,7 @@ set PATH=%NWT_ROOT%\toolchain\mconf\kconfig-frontends-3.12.0-windows;%PATH%
 set PATH=%NWT_ROOT%\toolchain\fatdisk;%PATH%
 
 @REM qemu
+set QEMU_HOME=%NWT_ROOT%\toolchain\qemu\qemu-w64-v8.2.0
 set PATH=%NWT_ROOT%\toolchain\qemu\qemu-w64-v8.2.0;%PATH%
 
 @REM env和pkgs
