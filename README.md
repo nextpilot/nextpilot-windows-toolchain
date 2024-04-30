@@ -1,10 +1,10 @@
-# nextpilot-windows-toolchain
+# Nextpilot Develop Toolchain for Windows
 
-#### 介绍
+## 介绍
 
 nextpilot-windows-toolchain是nextpilot-flight-control在windows平台下的开发工具链，由于nextpilot-flight-control采用了[RT-Thread](https://gitee.com/rtthread/rt-thread.git)国产操作系统，因此工具链中集成了[RT-Thread ENV](https://gitee.com/RT-Thread-Mirror/env.git)和[Packages](https://gitee.com/RT-Thread-Mirror/packages.git)
 
-#### 目录结构
+## 目录结构
 
 ```
 ├─document
@@ -22,17 +22,17 @@ nextpilot-windows-toolchain是nextpilot-flight-control在windows平台下的开�
 └─workspace        # 工作目录
 ```
 
-#### 如何使用
+## 如何使用
 
 1 下载工具链到任意**不包含中文**的路径，比如`c:\nextpilot-windows-toolchain`
 
-2 然后双击运行根目录下的`start.bat`脚本（为了方便下次使用，建议将start.bat添加桌面快捷方式），启动cmd终端
+2 双击根目录下的`start.bat`脚本（为了方便下次使用，建议将start.bat添加桌面快捷方式），启动cmd终端
 
-3 在cmd中切换到nextpilot-flight-control的target目录，然后执行配置、编译、仿真等
+3 在cmd中切换到`nextpilot-flight-control`的bsp目录，然后执行配置、编译、仿真等
 
 ```bat
 rem 切换到sitl虚拟飞行仿真目录
-cd nextpilot-flight-control\target\sitl\qemu-vexpress-a9
+cd nextpilot-flight-control\bsps\sitl\qemu
 
 # 配置编译模块，非必须
 menuconfig
@@ -44,7 +44,7 @@ scons -j10
 qemu.bat
 ```
 
-#### 常见问题
+## 常见问题
 
 1 如何将start.bat添加到Windows Terminal
 
