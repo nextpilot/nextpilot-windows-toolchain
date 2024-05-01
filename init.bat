@@ -52,7 +52,6 @@ REM ============= Nextpilot Toolchain Path ==================
 set NWT_ROOT=%~dp0
 
 set PATH=%SystemRoot%\system32;%PATH%
-set PATH=C:\WINDOWS\system32;%PATH%
 
 @REM python
 set PYTHONHOME=%NWT_ROOT%\toolchain\python\python-3.10.11-embed-amd64
@@ -84,3 +83,5 @@ set ENV_ROOT=%~dp0\rtthread
 set PKGS_ROOT=%ENV_ROOT%\packages
 set PKGS_DIR=%ENV_ROOT%\packages
 set PATH=%ENV_ROOT%\bin;%PATH%
+
+@REM cmd /K
