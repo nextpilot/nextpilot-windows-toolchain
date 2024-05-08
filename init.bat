@@ -54,7 +54,7 @@ set NWT_ROOT=%~dp0
 set PATH=%SystemRoot%\system32;%PATH%
 
 @REM python
-set PYTHONHOME=%NWT_ROOT%\toolchain\python\python-3.10.11-embed-amd64
+set PYTHONHOME=%NWT_ROOT%\toolchain\python\python-3.11.9-amd64
 set PYTHONPATH=%PYTHONHOME%
 set PATH=%PYTHONHOME%;%PYTHONHOME%\Scripts;%PATH%
 
