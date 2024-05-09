@@ -35,7 +35,7 @@ rem 切换到sitl虚拟飞行仿真目录
 cd nextpilot-flight-control\bsps\sitl\qemu
 
 # 配置编译模块，非必须
-menuconfig
+scons --menuconfig
 
 # 编译固件
 scons -j10
