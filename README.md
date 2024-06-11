@@ -29,11 +29,41 @@ nextpilot-windows-toolchain是nextpilot-flight-control在windows平台下的开�
 
 ## 如何使用
 
-1 下载工具链到`c:\nextpilot-windows-toolchain`，**当前只支持该路径**，不支持其它自定义路径哈
+1 下载工具链到`c:\nextpilot-windows-toolchain`，**当前只支持该路径**，不支持其它自定义路径哈，否则会报错找不到python.exe
 
-> 安装pip软件包时，会将python绝对路径的写入exe文件中，如果将toolchain安装到其它路径，运行`scons.exe`等工具的时候会提示找不到python.exe，因此暂时只支持`c:\nextpilot-windows-toolchain`这个路径。
+原因是，安装pip软件包时会将python绝对路径的写入exe文件中，工具链中预装pip包时用的路径是`c:\nextpilot-windows-toolchain`，如果将toolchain安装到其它路径，运行`scons.exe`等工具的时候会提示找不到`C:\nextpilot-windows-toolchain\toolchain\python\python-3.11.9-amd64\python.exe`，告警信息如下：
+
+```bat
+rem 如果将工具链安装到d:\nextpilot-windows-toolchain，而不是c:\nextpilot-windows-toolchain，则会提示如下错误
+
+Fatal error in launcher: Unable to create process using '"C:\nextpilot-windows-toolchain\toolchain\python\python-3.11.9-amd64\python.exe"  "D:\nextpilot-windows-toolchain\toolchain\python\python-3.11.9-amd64\Scripts\scons.exe" ': ???????????
+```
 
 2 双击根目录下的`start.bat`脚本（为了方便下次使用，建议将start.bat添加桌面快捷方式），启动cmd终端
+
+```bat
+https://github.com/chrisant996/clink
+Microsoft Windows [版本 10.0.19045.4412]
+******************************************************************
+*      _   __             __   ____   _  __        __
+*     / | / /___   _  __ / /_ / __ \ (_)/ /____   / /_
+*    /  |/ // _ \ | |/_// __// /_/ // // // __ \ / __/
+*   / /|  //  __/_>  < / /_ / ____// // // /_/ // /_
+*  /_/ |_/ \___//_/|_| \__//_/    /_//_/ \____/ \__/
+*
+* Copyright All Reserved (C) 2015-2024 NextPilot Development Team
+******************************************************************
+
+Clink v1.6.14 is available.
+- To apply the update, run 'clink update'.
+- To stop checking for updates, run 'clink set clink.autoupdate off'.
+- To view the release notes, visit the Releases page:
+  https://github.com/chrisant996/clink/releases
+
+# LaterComer @ LAPTOP-TL7N7OT4 in C:\nextpilot-windows-toolchain on git:master x [10:36:17]
+```
+
+> 注意：Clink是用户执行安装的，目前工具链中没有集成Clink。
 
 3 在cmd中切换到`nextpilot-flight-control`的bsp目录，然后执行配置、编译、仿真等
 

@@ -48,35 +48,42 @@ REM ============= Nextpilot Toolchain Path ==================
 
 @REM Setlocal ENABLEDELAYEDEXPANSION
 
-@REM NWT_ROOT
-set NWT_ROOT=%~dp0
+@REM NDT_ROOT
+set NDT_ROOT=%~dp0
+
+if /i not "%~dp0"=="C:\nextpilot-windows-toolchain\" (
+  echo.
+  echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  echo ERROR: Toolchain must be installed in "C:\nextpilot-windows-toolchain"
+  echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+)
 
 set PATH=%SystemRoot%\system32;%PATH%
 
 @REM python
-set PYTHONHOME=%NWT_ROOT%\toolchain\python\python-3.11.9-amd64
+set PYTHONHOME=%NDT_ROOT%\toolchain\python\python-3.11.9-amd64
 set PYTHONPATH=%PYTHONHOME%
 set PATH=%PYTHONHOME%;%PYTHONHOME%\Scripts;%PATH%
 
 @REM arm-gcc
-set GCC_ARM_HOME=%NWT_ROOT%\toolchain\gcc\gcc-arm-none-eabi-10.3-2021.10
-set GCC_EXEC_PATH=%NWT_ROOT%\toolchain\gcc\gcc-arm-none-eabi-10.3-2021.10\bin
+set GCC_ARM_HOME=%NDT_ROOT%\toolchain\gcc\gcc-arm-none-eabi-10.3-2021.10
+set GCC_EXEC_PATH=%NDT_ROOT%\toolchain\gcc\gcc-arm-none-eabi-10.3-2021.10\bin
 set RTT_EXEC_PATH=%GCC_EXEC_PATH%
 set RTT_CC=gcc
 set PATH=%RTT_EXEC_PATH%;%PATH%
 
 @REM git
-set PATH=%NWT_ROOT%\toolchain\git\MinGit-2.42.0.2-64-bit\cmd;%PATH%
+set PATH=%NDT_ROOT%\toolchain\git\MinGit-2.42.0.2-64-bit\cmd;%PATH%
 
 @REM mconf
-set PATH=%NWT_ROOT%\toolchain\mconf\kconfig-frontends-3.12.0-windows;%PATH%
+set PATH=%NDT_ROOT%\toolchain\mconf\kconfig-frontends-3.12.0-windows;%PATH%
 
 @REM fatdisk
-set PATH=%NWT_ROOT%\toolchain\fatdisk;%PATH%
+set PATH=%NDT_ROOT%\toolchain\fatdisk;%PATH%
 
 @REM qemu
-set QEMU_HOME=%NWT_ROOT%\toolchain\qemu\qemu-w64-v8.2.0
-set PATH=%NWT_ROOT%\toolchain\qemu\qemu-w64-v8.2.0;%PATH%
+set QEMU_HOME=%NDT_ROOT%\toolchain\qemu\qemu-w64-v8.2.0
+set PATH=%NDT_ROOT%\toolchain\qemu\qemu-w64-v8.2.0;%PATH%
 
 @REM env和pkgs
 set ENV_ROOT=%~dp0\rtthread
