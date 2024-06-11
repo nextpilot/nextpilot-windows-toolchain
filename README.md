@@ -63,7 +63,7 @@ Clink v1.6.14 is available.
 # LaterComer @ LAPTOP-TL7N7OT4 in C:\nextpilot-windows-toolchain on git:master x [10:36:17]
 ```
 
-> 注意：Clink是用户执行安装的，目前工具链中没有集成Clink。
+> 注意：Clink是用户自行安装的，目前工具链中没有集成Clink。
 
 3 在cmd中切换到`nextpilot-flight-control`的bsp目录，然后执行配置、编译、仿真等
 
@@ -71,13 +71,14 @@ Clink v1.6.14 is available.
 rem 切换到sitl虚拟飞行仿真目录
 cd nextpilot-flight-control\bsps\sitl\qemu
 
-# 配置编译模块，非必须
+rem 配置编译模块，非必须
 scons --menuconfig
 
-# 编译固件
+rem 编译固件
 scons -j10
+scons default -j10
 
-# 启动仿真
+rem 启动仿真
 qemu.bat
 ```
 
@@ -91,11 +92,11 @@ qemu.bat
 
 当前已集成pip工具以及开发所需pip包，如果还希望安装其他模块，直接通过`pip install`安装即可。如果是国内环境，建议切换pip源为：
 
-```
-# 使用清华大学pip源
+```bat
+rem 使用清华大学pip源
 pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 
-# 使用阿里云pip源
+rem 使用阿里云pip源
 pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/
 
 ```
