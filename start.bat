@@ -1,1 +1,1 @@
-@cmd /K call init.bat
+@cmd /K call %~dp0\init.bat
