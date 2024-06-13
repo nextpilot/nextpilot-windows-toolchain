@@ -89,6 +89,6 @@ set PATH=%NDT_ROOT%\toolchain\qemu\qemu-w64-v8.2.0;%PATH%
 set ENV_ROOT=%~dp0\rtthread
 set PKGS_ROOT=%ENV_ROOT%\packages
 set PKGS_DIR=%ENV_ROOT%\packages
-set PATH=%ENV_ROOT%\bin;%PATH%
+@REM set PATH=%ENV_ROOT%\bin;%PATH%
 
 @REM cmd /K

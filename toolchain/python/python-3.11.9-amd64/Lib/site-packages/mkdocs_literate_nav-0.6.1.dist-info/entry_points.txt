@@ -1,0 +1,2 @@
+[mkdocs.plugins]
+literate-nav = mkdocs_literate_nav.plugin:LiterateNavPlugin
