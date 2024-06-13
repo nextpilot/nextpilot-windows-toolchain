@@ -1,9 +1,0 @@
-[submodule "rtthread/env"]
-	path = rtthread/env
-	url = https://gitee.com/RT-Thread-Mirror/env.git
-[submodule "rtthread/pkg/packages"]
-	path = rtthread/pkg/packages
-	url = https://gitee.com/RT-Thread-Mirror/packages.git
-[submodule "rtthread/rtt"]
-	path = rtthread/rtt
-	url = https://gitee.com/rtthread/rt-thread
