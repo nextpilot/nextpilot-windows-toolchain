@@ -14,9 +14,9 @@
 
 ```
 ├─document
-├─rtthread         # 保存rt-thread官方工具和代码
-│  ├─env           # rtt-env的python代码
-│  └─pkg           # rtt-pkg的kconfig文件
+├─rtthread         # 保存env工具链和代码
+│  ├─packages      # rtt软降包索引
+│  └─tools/scripts # env python脚本
 ├─toolchain        # 第三方工具链，主要是python/arm-gcc等
 │  ├─gcc           # arm-gcc，用于编译固件
 │  ├─git           # git-for-windows，用于版本管理
