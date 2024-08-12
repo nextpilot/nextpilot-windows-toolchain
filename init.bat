@@ -86,7 +86,7 @@ set QEMU_HOME=%NDT_ROOT%\toolchain\qemu\qemu-w64-v8.2.0
 set PATH=%NDT_ROOT%\toolchain\qemu\qemu-w64-v8.2.0;%PATH%
 
 @REM env和pkgs
-set ENV_ROOT=%~dp0\rtthread
+set ENV_ROOT=%~dp0rtthread
 set PKGS_ROOT=%ENV_ROOT%\packages
 set PKGS_DIR=%ENV_ROOT%\packages
 @REM set PATH=%ENV_ROOT%\bin;%PATH%
