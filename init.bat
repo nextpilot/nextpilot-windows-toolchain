@@ -4,9 +4,11 @@ title NextPilot Windows Toolchain
 
 rem Simple "ver" prints empty line before Windows version
 rem Use this construction to print just a version info
-cmd /d /c ver | "%windir%\system32\find.exe" "Windows"
+@REM cmd /d /c ver | "%windir%\system32\find.exe" "Windows"
 
+@REM chcp 65001 > nul
 
+echo.
 echo ******************************************************************
 echo *      _   __             __   ____   _  __        __
 echo *     / ^| / /___   _  __ / /_ / __ \ (_)/ /____   / /_
@@ -16,6 +18,25 @@ echo *  /_/ ^|_/ \___//_/^|_^| \__//_/    /_//_/ \____/ \__/
 echo *
 echo * Copyright All Reserved (C) 2015-2024 NextPilot Development Team
 echo ******************************************************************
+
+
+if /i not "%~dp0"=="C:\nextpilot-windows-toolchain\" (
+  echo.
+  echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  echo ERROR: Toolchain must be installed in "C:\nextpilot-windows-toolchain"
+  echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+)
+
+rem Do not repeat run
+if not "%NdtInited%" == "" goto :eof
+
+
+REM ============= Change Command Prompt ==================
+
+:set_command_prompt
+
+rem Run in ConEmu
+if not "%ConEmuBaseDir%" == "" goto :add_toolchain_path
 
 rem Now we form the command prompt
 rem This will start prompt with `User@PC `
@@ -43,20 +64,34 @@ set PROMPT3=$E[m$S$E]9;12$E\
 prompt %prompt1%%prompt2%%prompt3%
 
 
-REM ============= Nextpilot Toolchain Path ==================
+REM ============= Activate Python Venv ==================
 
+:activate_python_venv
+
+@REM set VENV_ROOT=%~dp0\.venv
+@REM if not exist "%VENV_ROOT%" (
+@REM   echo Create Python Venv
+@REM   %~dp0\toolchain\python\python-3.11.9-amd64\python.exe -m pip uninstall pip -y
+@REM   %~dp0\toolchain\python\python-3.11.9-amd64\python.exe -m ensurepip
+@REM   %~dp0\toolchain\python\python-3.11.9-amd64\python.exe -m venv "%VENV_ROOT%"
+@REM   echo Activate Python Venv in %VENV_ROOT%
+@REM   %VENV_ROOT%\Scripts\activate.bat
+@REM   echo Install Python Packages
+@REM   pip install -r  %~dp0\toolchain\python\requirements.txt
+@REM ) else (
+@REM    echo Activate Python Venv in %VENV_ROOT%
+@REM   %VENV_ROOT%\Scripts\activate.bat  
+@REM )
+
+
+REM ============= Add Toolchain Path ==================
+
+:add_toolchain_path
 
 @REM Setlocal ENABLEDELAYEDEXPANSION
 
 @REM NDT_ROOT
 set NDT_ROOT=%~dp0
-
-if /i not "%~dp0"=="C:\nextpilot-windows-toolchain\" (
-  echo.
-  echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  echo ERROR: Toolchain must be installed in "C:\nextpilot-windows-toolchain"
-  echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-)
 
 set PATH=%SystemRoot%\system32;%PATH%
 
@@ -91,4 +126,16 @@ set PKGS_ROOT=%ENV_ROOT%\packages
 set PKGS_DIR=%ENV_ROOT%\packages
 @REM set PATH=%ENV_ROOT%\bin;%PATH%
 
-@REM cmd /K
+
+@REM set inited flag
+@REM set NdtInited=1
+
+
+REM ============= Inject Clink Tools ==================
+
+:inject_clink
+
+rem Run in ConEmu
+if not "%ConEmuBaseDir%" == "" goto :eof
+
+%~dp0\toolchain\conemu\ConEmuPack.230724\ConEmu\clink\clink.bat inject
