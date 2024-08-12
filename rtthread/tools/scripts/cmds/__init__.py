@@ -23,16 +23,18 @@
 # 2018-5-28      SummerGift      Add copyright information
 #
 
-__all__ = ['cmd_package', 'cmd_system', 'cmd_menuconfig']
+__all__ = ['cmd_package', 'cmd_system', 'cmd_menuconfig', 'cmd_sdk']
 
 try:
     import requests
 except ImportError:
-    print("****************************************\n"
-          "* Import requests module error.\n"
-          "* Please install requests module first.\n"
-          "* pip install step:\n"
-          "* $ pip install requests\n"
-          "* command install step:\n"
-          "* $ sudo apt-get install python-requests\n"
-          "****************************************\n")
+    print(
+        "****************************************\n"
+        "* Import requests module error.\n"
+        "* Please install requests module first.\n"
+        "* pip install step:\n"
+        "* $ pip install requests\n"
+        "* command install step:\n"
+        "* $ sudo apt-get install python-requests\n"
+        "****************************************\n"
+    )

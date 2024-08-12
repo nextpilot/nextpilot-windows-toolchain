@@ -30,7 +30,7 @@ from vars import Import
 
 
 def cmd(args):
-    packages_root = os.path.join(Import('env_root'), 'packages')
+    packages_root = Import('pkgs_root')
 
     if args.system_update:
         dir_list = os.listdir(packages_root)
@@ -43,12 +43,18 @@ def cmd(args):
 
 
 def add_parser(sub):
-    parser = sub.add_parser('system', help=__doc__, description=__doc__)
+    parser = sub.add_parser(
+        'system',
+        help=__doc__,
+        description=__doc__,
+    )
 
-    parser.add_argument('--update',
-                        help='update system menuconfig\'s online package options ',
-                        action='store_true',
-                        default=False,
-                        dest='system_update')
+    parser.add_argument(
+        '--update',
+        help='update system menuconfig\'s online package options ',
+        action='store_true',
+        default=False,
+        dest='system_update',
+    )
 
     parser.set_defaults(func=cmd)

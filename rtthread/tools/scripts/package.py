@@ -29,10 +29,9 @@ import json
 import logging
 import os
 import sys
-
 import requests
-
 import archive
+from tqdm import tqdm
 
 """Template for creating a new file"""
 
@@ -118,19 +117,9 @@ Package_json_file = '''{
 }
 '''
 
-Sconscript_file = '''
-from building import *
+import codecs
 
-cwd     = GetCurrentDir()
-src     = Glob('*.c') + Glob('*.cpp')
-CPPPATH = [cwd]
 
-group = DefineGroup('${name}', src, depend = [''], CPPPATH = CPPPATH)
-
-Return('group')
-'''
-
-import codecs 
 class PackageOperation:
     pkg = None
 
@@ -192,49 +181,38 @@ class PackageOperation:
                 os.remove(path)
             else:
                 if archive.package_integrity_test(path):
-                    # print "The file is rigit."
                     return True
                 else:
                     os.remove(path)
 
         retry_count = 0
 
-        headers = {'Connection': 'keep-alive',
-                   'Accept-Encoding': 'gzip, deflate',
-                   'Accept': '*/*',
-                   'User-Agent': 'curl/7.54.0'}
+        headers = {'Connection': 'keep-alive', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'User-Agent': 'curl/7.54.0'}
 
-        print('Start to download package : %s ' % filename.encode("utf-8"))
+        print('downloading ' + filename + ' ...')
 
         while True:
-            # print("retry_count : %d"%retry_count)
             try:
                 r = requests.get(url_from_srv, stream=True, headers=headers)
+                total_size = int(r.headers.get('content-length', 0))
 
-                flush_count = 0
-
-                with open(path, 'wb') as f:
+                with open(path, 'wb') as f, tqdm(total=total_size, unit='B', unit_scale=True) as bar:
+                    # if the chunk_size is too large, the progress bar will not display
                     for chunk in r.iter_content(chunk_size=1024):
                         if chunk:
                             f.write(chunk)
-                            f.flush()
-                        flush_count += 1
-                        sys.stdout.write("\rDownloding %d KB" % flush_count)
-                        sys.stdout.flush()
+                            bar.update(len(chunk))
 
                 retry_count = retry_count + 1
 
                 if archive.package_integrity_test(path):  # make sure the file is right
                     ret = True
-                    print("\rDownloded %d KB  " % flush_count)
-                    print('Start to unpack. Please wait...')
                     break
                 else:
                     if os.path.isfile(path):
                         os.remove(path)
                     if retry_count > 5:
-                        print(
-                            "error: Have tried downloading 5 times.\nstop Downloading file :%s" % path)
+                        print("error: Have tried downloading 5 times.\nstop Downloading file :%s" % path)
                         if os.path.isfile(path):
                             os.remove(path)
                         ret = False
@@ -249,5 +227,3 @@ class PackageOperation:
                         os.remove(path)
                     return False
         return ret
-
-

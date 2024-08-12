@@ -31,10 +31,15 @@ import argparse
 import logging
 import platform
 
+script_path = os.path.abspath(__file__)
+mpath = os.path.dirname(script_path)
+sys.path.insert(0, mpath)
+
 from cmds import *
 from vars import Export
 
-__version__ = 'RT-Thread Env Script v1.5.0'
+__version__ = 'RT-Thread Env Tool v1.5.0'
+
 
 def init_argparse():
     parser = argparse.ArgumentParser(description=__doc__)
@@ -45,6 +50,7 @@ def init_argparse():
     cmd_system.add_parser(subs)
     cmd_menuconfig.add_parser(subs)
     cmd_package.add_parser(subs)
+    cmd_sdk.add_parser(subs)
 
     return parser
 
@@ -52,11 +58,12 @@ def init_argparse():
 def init_logger(env_root):
     log_format = "%(module)s %(lineno)d %(levelname)s %(message)s \n"
     date_format = '%Y-%m-%d  %H:%M:%S %a '
-    logging.basicConfig(level=logging.WARNING,
-                        format=log_format,
-                        datefmt=date_format,
-                        # filename=log_name
-                        )
+    logging.basicConfig(
+        level=logging.WARNING,
+        format=log_format,
+        datefmt=date_format,
+        # filename=log_name
+    )
 
 
 def get_env_root():
@@ -66,14 +73,13 @@ def get_env_root():
             env_root = os.path.join(os.getenv('HOME'), '.env')
         else:
             env_root = os.path.join(os.getenv('USERPROFILE'), '.env')
-
     return env_root
 
 
-def get_package_root(env_root):
+def get_package_root():
     package_root = os.getenv("PKGS_ROOT")
     if package_root is None:
-        package_root = os.path.join(env_root, 'packages')
+        package_root = os.path.join(get_env_root(), 'packages')
     return package_root
 
 
@@ -99,16 +105,33 @@ def get_bsp_root():
 
     return bsp_root
 
+
 def export_environment_variable():
     script_root = os.path.split(os.path.realpath(__file__))[0]
     sys.path = sys.path + [os.path.join(script_root)]
-    bsp_root = get_bsp_root()
     env_root = get_env_root()
-    pkgs_root = get_package_root(env_root)
+    pkgs_root = get_package_root()
+    bsp_root = get_bsp_root()
+
+    os.environ["ENV_ROOT"] = env_root
+    os.environ['PKGS_ROOT'] = pkgs_root
+    os.environ['PKGS_DIR'] = pkgs_root
+    os.environ['BSP_DIR'] = bsp_root
 
     Export('env_root')
-    Export('bsp_root')
     Export('pkgs_root')
+    Export('bsp_root')
+
+
+def exec_arg(arg):
+    export_environment_variable()
+    init_logger(get_env_root())
+
+    sys.argv.insert(1, arg)
+
+    parser = init_argparse()
+    args = parser.parse_args()
+    args.func(args)
 
 
 def main():
@@ -117,7 +140,27 @@ def main():
 
     parser = init_argparse()
     args = parser.parse_args()
-    args.func(args)
+
+    if not vars(args):
+        parser.print_help()
+    else:
+        args.func(args)
+
+
+def menuconfig():
+    exec_arg('menuconfig')
+
+
+def pkgs():
+    exec_arg('pkg')
+
+
+def sdk():
+    exec_arg('sdk')
+
+
+def system():
+    exec_arg('system')
 
 
 if __name__ == '__main__':
