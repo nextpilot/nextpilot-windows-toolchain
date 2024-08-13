@@ -15,13 +15,13 @@
 ```
 ├─document
 ├─rtthread         # 保存env工具链和代码
-│  ├─packages      # rtt软降包索引
+│  ├─packages      # rtt软件包索引
 │  └─tools/scripts # env python脚本
 ├─toolchain        # 第三方工具链，主要是python/arm-gcc等
-│  ├─gcc           # arm-gcc，用于编译固件
+│  ├─gcc           # gcc，用于编译固件
 │  ├─git           # git-for-windows，用于版本管理
-│  ├─mconf         # kconfig-frontends，在windows下使用kconfig
-│  ├─python        # python，已经添加了所需的模块
+│  ├─mconf         # kconfig-frontends，在windows下使用kconfig（已废弃）
+│  ├─python        # python，已经添加了所需pip模块
 │  ├─qemu          # qemu，硬件模拟器，用于运行飞行仿真
 │  ├─conemu        # coemu，命令行终端（集成了clink）
 │  └─vscode        # vscode，文本编辑器，已安装所需的插件
