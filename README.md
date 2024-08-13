@@ -38,13 +38,12 @@
 Fatal error in launcher: Unable to create process using '"C:\nextpilot-windows-toolchain\toolchain\python\python-3.11.9-amd64\python.exe"  "D:\nextpilot-windows-toolchain\toolchain\python\python-3.11.9-amd64\Scripts\scons.exe" ': ???????????
 ```
 
-2 双击根目录下的`start.bat`脚本（为了方便下次使用，建议将start.bat添加桌面快捷方式），启动终端。如果已经添加了右键菜单，则可以在`bsps/sitl/qemu`文件夹上点击鼠标右键方式启动终端。
+2 双击根目录下的`start.bat`脚本（为了方便下次使用，建议将start.bat添加桌面快捷方式），启动终端。如果已经将 NextPilot 添加到 Windows 右键菜单，那么可以在`bsps/sitl/qemu`文件夹上`点击鼠标右键` 选择 `NextPilot Here`方式启动终端。
 
 ![](./toolchain/conemu/start-from-contex-menu.jpg)
 
 ```bat
-https://github.com/chrisant996/clink
-Microsoft Windows [版本 10.0.19045.4412]
+
 ******************************************************************
 *      _   __             __   ____   _  __        __
 *     / | / /___   _  __ / /_ / __ \ (_)/ /____   / /_
@@ -61,7 +60,7 @@ Clink v1.6.14 is available.
 - To view the release notes, visit the Releases page:
   https://github.com/chrisant996/clink/releases
 
-# LaterComer @ LAPTOP-TL7N7OT4 in C:\nextpilot-windows-toolchain on git:master x [10:36:17]
+LaterComer@DESKTOP-JTKLBS9 C:\nextpilot-flight-control-public\bsps\sitl\qemu
 ```
 
 3 在cmd中切换到`nextpilot-flight-control`的bsp目录，然后执行配置、编译、仿真等
@@ -92,7 +91,7 @@ qemu.bat
 
 ### 添加到右键菜单
 
-打开 ConEmu 设置页面，按照下图所示可以添加右键快捷菜单：
+打开 `ConEmu > Settings...` 设置页面，按照下图所示可以添加右键快捷菜单：
 
 - Menu item：`NextPilot Here`
 - Command：`{cmd} -cur_console:n`
@@ -102,7 +101,7 @@ qemu.bat
 
 ### 集成到Windows Terminal
 
-打开 Windows Termial 设置页面，选择`添加新配置文件`，按照如下填写
+打开 `Windows Termial > 设置` 设置页面，选择`添加新配置文件`，按照如下填写
 
 - 名称：`NextPilot Windows Toolchain`
 - 命令行：`cmd.exe /k C:\nextpilot-windows-toolchain\init.bat`
@@ -110,7 +109,7 @@ qemu.bat
 
 ![](./toolchain/conemu/add-to-window-terminal.jpg)
 
-> 为了方便使用，可以通过 `Windows Terminal > Setting > 启动 > 默认配置文件`，将 NextPilot Windows Toolchain 设置为默认终端
+> 为了方便使用，建议将 NextPilot Windows Toolchain 设置为默认终端，设置方式是： `Windows Terminal > 设置 > 启动 > 默认配置文件`，
 
 ### 安装其它pip模块
 
