@@ -30,17 +30,56 @@
 
 ## 如何使用
 
-1 下载工具链到`c:\nextpilot-windows-toolchain`，**当前只支持该路径**，不支持其它自定义路径哈，否则会报错找不到python.exe
+### 下载开发工具链
 
-> 原因是：安装pip软件包时会将python绝对路径的写入exe文件中，工具链中预装pip包时用的路径是`c:\nextpilot-windows-toolchain`，如果将toolchain安装到其它路径，运行`scons.exe`等工具的时候会提示找不到`C:\nextpilot-windows-toolchain\toolchain\python\python-3.11.9-amd64\python.exe`，告警信息如下：
+下载/克隆工具链到`c:\nextpilot-windows-toolchain`，**当前只支持该路径**，不支持其它自定义路径哈，否则会报错找不到python.exe。
 
-```bat
-Fatal error in launcher: Unable to create process using '"C:\nextpilot-windows-toolchain\toolchain\python\python-3.11.9-amd64\python.exe"  "D:\nextpilot-windows-toolchain\toolchain\python\python-3.11.9-amd64\Scripts\scons.exe" ': ???????????
+原因是，安装pip软件包时会将python绝对路径的写入exe文件中，工具链中预装pip包时用的路径是`c:\nextpilot-windows-toolchain`，如果将toolchain安装到其它路径，运行`scons.exe`等工具的时候会提示找不到`C:\nextpilot-windows-toolchain\toolchain\python\python-3.11.9-amd64\python.exe`，告警信息如下：
+
+> Fatal error in launcher: Unable to create process using '"C:\nextpilot-windows-toolchain\toolchain\python\python-3.11.9-amd64\python.exe"  "D:\nextpilot-windows-toolchain\toolchain\python\python-3.11.9-amd64\Scripts\scons.exe" ': ???????????
+
+### 添加到右键菜单
+
+打开 `ConEmu > Settings...` 设置页面，按照下图所示可以添加右键快捷菜单：
+
+- Menu item：`NextPilot Here`
+- Command：`{cmd} -cur_console:n`
+- Icon file：`C:\nextpilot-windows-toolchain\toolchain\conemu\ConEmuPack.230724\ConEmu64.exe,0`
+
+![](./toolchain/conemu/add-to-contex-menu.jpg)
+
+### 集成到Windows Terminal
+
+打开 `Windows Termial > 设置` 设置页面，选择 `添加新配置文件`，按照如下填写
+
+- 名称：`NextPilot Windows Toolchain`
+- 命令行：`cmd.exe /k C:\nextpilot-windows-toolchain\init.bat`
+- 其它设置，全部保持默认即可
+
+![](./toolchain/conemu/add-to-window-terminal.jpg)
+
+> 为了方便使用，建议将 NextPilot Windows Toolchain 设置为默认终端，设置方法为： `Windows Terminal > 设置 > 启动 > 默认配置文件`，
+
+### 集成到 VScode
+
+在 Vscode 现有终端里面运行下面命令初始化 nextpilot 工具链环境：
+
+```
+C:\nextpilot-windows-toolchain\init.bat
 ```
 
-2 双击根目录下的`start.bat`脚本（为了方便下次使用，建议将start.bat添加桌面快捷方式），启动终端。如果已经将 NextPilot 添加到 Windows 右键菜单，那么可以在`bsps/sitl/qemu`文件夹上`点击鼠标右键` 选择 `NextPilot Here`方式启动终端。
+然后就可以正常运行 scons 等工具。
+
+### 启动 ConEmu 终端
+
+可以通过以下两种方式启动ConEmu终端（**推荐第二种**）：
+
+- 双击根目录下的`start.bat`脚本（为了方便使用，建议将start.bat添加桌面快捷方式）
+- 在`bsps/sitl/qemu`文件夹上`点击鼠标右键` 选择 `NextPilot Here`菜单
 
 ![](./toolchain/conemu/start-from-contex-menu.jpg)
+
+启动 ConEmu 终端效果如下：
 
 ```bat
 
@@ -60,10 +99,12 @@ Clink v1.6.14 is available.
 - To view the release notes, visit the Releases page:
   https://github.com/chrisant996/clink/releases
 
-LaterComer@DESKTOP-JTKLBS9 C:\nextpilot-flight-control-public\bsps\sitl\qemu
+LaterComer@DESKTOP-JTKLBS9 C:\nextpilot-flight-control\bsps\sitl\qemu
 ```
 
-3 在cmd中切换到`nextpilot-flight-control`的bsp目录，然后执行配置、编译、仿真等
+### 编译飞控项目
+
+在 ConEmu 中切换到`nextpilot-flight-control`的 bsp 目录，然后执行配置、编译、仿真等
 
 ```bat
 rem 切换到sitl虚拟飞行仿真目录
@@ -85,31 +126,9 @@ rem 启动仿真
 qemu.bat
 ```
 
-> 注意：`bsps/sitl/qemu/config/`文件夹下面保存了很多`*.config`文件（比如default.config），`scons default`表示使用`default.config`配置文件
+> 注意：`bsps/sitl/qemu/config/`文件夹下面保存了很多`*.config`文件（比如default.config），`scons default`表示先根据`default.config`生成`rtconfig.h`文件，然后再编译。
 
 ## 常见问题
-
-### 添加到右键菜单
-
-打开 `ConEmu > Settings...` 设置页面，按照下图所示可以添加右键快捷菜单：
-
-- Menu item：`NextPilot Here`
-- Command：`{cmd} -cur_console:n`
-- Icon file：`C:\nextpilot-windows-toolchain\toolchain\conemu\ConEmuPack.230724\ConEmu64.exe,0`
-
-![](./toolchain/conemu/add-to-contex-menu.jpg)
-
-### 集成到Windows Terminal
-
-打开 `Windows Termial > 设置` 设置页面，选择`添加新配置文件`，按照如下填写
-
-- 名称：`NextPilot Windows Toolchain`
-- 命令行：`cmd.exe /k C:\nextpilot-windows-toolchain\init.bat`
-- 其它设置，全部保持默认即可
-
-![](./toolchain/conemu/add-to-window-terminal.jpg)
-
-> 为了方便使用，建议将 NextPilot Windows Toolchain 设置为默认终端，设置方式是： `Windows Terminal > 设置 > 启动 > 默认配置文件`，
 
 ### 安装其它pip模块
 
