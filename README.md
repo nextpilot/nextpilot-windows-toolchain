@@ -58,7 +58,7 @@
 
 ![](./toolchain/conemu/add-to-window-terminal.jpg)
 
-> 为了方便使用，建议将 NextPilot Windows Toolchain 设置为默认终端，设置方法为： `Windows Terminal > 设置 > 启动 > 默认配置文件`，
+> 为了方便使用，建议将 `NextPilot Windows Toolchain` 设置为默认终端，设置方法为： `Windows Terminal > 设置 > 启动 > 默认配置文件`
 
 ### 集成到 VScode
 
