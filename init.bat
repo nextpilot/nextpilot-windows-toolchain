@@ -107,6 +107,9 @@ set RTT_EXEC_PATH=%GCC_EXEC_PATH%
 set RTT_CC=gcc
 set PATH=%RTT_EXEC_PATH%;%PATH%
 
+@REM node
+set PATH=%NDT_ROOT%\toolchain\node\node-v20.18.0-win-x64;%PATH%
+
 @REM git
 set PATH=%NDT_ROOT%\toolchain\git\MinGit-2.42.0.2-64-bit\cmd;%PATH%
 
