@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2024-08-12 14:26:18" build="230724">
+		<key name=".Vanilla" modified="2026-09-22 13:09:51" build="230724">
 			<value name="StartType" type="hex" data="02"/>
 			<value name="CmdLine" type="string" data=""/>
 			<value name="StartTasksFile" type="string" data=""/>
@@ -245,11 +245,11 @@
 			<value name="Cascaded" type="hex" data="01"/>
 			<value name="IntegralSize" type="hex" data="00"/>
 			<value name="WindowMode" type="dword" data="0000051f"/>
-			<value name="ConWnd X" type="long" data="673"/>
-			<value name="ConWnd Y" type="long" data="328"/>
-			<value name="LastMonitor" type="string" data="0,0,1920,1032"/>
-			<value name="ConWnd Width" type="dword" data="0000006f"/>
-			<value name="ConWnd Height" type="dword" data="00000022"/>
+			<value name="ConWnd X" type="long" data="576"/>
+			<value name="ConWnd Y" type="long" data="149"/>
+			<value name="LastMonitor" type="string" data="0,0,1920,1030"/>
+			<value name="ConWnd Width" type="dword" data="0000006d"/>
+			<value name="ConWnd Height" type="dword" data="00000021"/>
 			<value name="16bit Height" type="ulong" data="0"/>
 			<value name="CmdLineHistory" type="multi">
 				<line data="{Bash::bash}"/>

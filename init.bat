@@ -19,17 +19,8 @@ echo *
 echo * Copyright All Reserved (C) 2015-2024 NextPilot Development Team
 echo ******************************************************************
 
-
-if /i not "%~dp0"=="C:\nextpilot-windows-toolchain\" (
-  echo.
-  echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  echo ERROR: Toolchain must be installed in "C:\nextpilot-windows-toolchain"
-  echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-)
-
 rem Do not repeat run
 if not "%NdtInited%" == "" goto :eof
-
 
 REM ============= Change Command Prompt ==================
 

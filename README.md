@@ -32,11 +32,9 @@
 
 ### 下载开发工具链
 
-下载/克隆工具链到`c:\nextpilot-windows-toolchain`，**当前只支持该路径**，不支持其它自定义路径哈，否则会报错找不到python.exe。
+将工具链下载/克隆到**任意路径**即可，例如 `c:\nextpilot-windows-toolchain` 或 `d:\nextpilot-windows-toolchain`。
 
-原因是，安装pip软件包时会将python绝对路径的写入exe文件中，工具链中预装pip包时用的路径是`c:\nextpilot-windows-toolchain`，如果将toolchain安装到其它路径，运行`scons.exe`等工具的时候会提示找不到`C:\nextpilot-windows-toolchain\toolchain\python\python-3.11.9-amd64\python.exe`，告警信息如下：
-
-> Fatal error in launcher: Unable to create process using '"C:\nextpilot-windows-toolchain\toolchain\python\python-3.11.9-amd64\python.exe"  "D:\nextpilot-windows-toolchain\toolchain\python\python-3.11.9-amd64\Scripts\scons.exe" ': ???????????
+> **注意**：工具链已修改 pip 的 distlib 配置，使安装的 `Scripts/*.exe` 使用相对路径 `python.exe` 作为 shebang。只要通过 `init.bat` 启动环境（已将 Python 添加到 PATH），所有 pip 工具（如 `scons.exe`）即可正常工作，不受安装路径限制。
 
 ### 添加到右键菜单
 
